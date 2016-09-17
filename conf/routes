@@ -1,0 +1,25 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+GET     /polls/:id/full             controllers.FullViewController.get(id: java.util.UUID)
+GET     /polls/:id                  controllers.PollsController.get(id: java.util.UUID)
+POST    /polls                      controllers.PollsController.post()
+DELETE  /polls/:id                  controllers.PollsController.delete(id: java.util.UUID, secret: java.util.UUID)
+
+GET     /polls/:pollId/people           controllers.PeopleController.get(pollId: java.util.UUID)
+POST    /polls/:pollId/people           controllers.PeopleController.post(pollId: java.util.UUID)
+DELETE  /polls/:pollId/people/:id       controllers.PeopleController.delete(pollId: java.util.UUID, id: Long)
+
+GET     /polls/:pollId/slots            controllers.SlotsController.get(pollId: java.util.UUID)
+POST    /polls/:pollId/slots            controllers.SlotsController.post(pollId: java.util.UUID, secret: java.util.UUID)
+DELETE  /polls/:pollId/slots/:slotId    controllers.SlotsController.delete(pollId: java.util.UUID, secret: java.util.UUID, slotId: Long)
+#
+#GET     /polls/:pollId/responses                controllers.ResponsesController.get(pollId: java.util.UUID)
+#POST    /polls/:pollId/responses                controllers.ResponsesController.post(pollId: java.util.UUID)
+#DELETE  /polls/:pollId/responses/:responseId    controllers.ResponsesController.delete(pollId: java.util.UUID, responseId: Long)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+    
