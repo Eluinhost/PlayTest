@@ -35,12 +35,13 @@ class FullViewController @Inject()
 
     val pollJson = Json.toJson(c.poll).as[JsObject] + ("people" -> peopleIds) + ("slots" -> slotIds)
 
-    val peopleByIdJson = peopleById map { (id, person) =>  (JsString(id.toString), Json.toJson(person)) }
+    val peopleByIdJson = new JsObject(peopleById.map(entry => (entry._1.toString, Json.toJson(entry._2))))
+    val slotsByIdJson = new JsObject(slotsById.map(entry => (entry._1.toString, Json.toJson(entry._2))))
 
     Json.obj(
       "poll" -> pollJson,
-      "peopleById" -> Json.toJson(peopleById),
-      "slotsById" -> Json.toJson(slotsById)
+      "peopleById" -> peopleByIdJson,
+      "slotsById" -> slotsByIdJson
     )
   })
 
